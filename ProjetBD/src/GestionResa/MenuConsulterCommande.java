@@ -1,5 +1,6 @@
 package GestionResa;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 
 import DonnePOJO.Personne;
 import DonnePOJO.Reservation;
+import DonnePOJO.ReserverFret;
 import Outils.LectureClavier;
 import PackageDAO.Connexion;
 import oracle.sql.TIMESTAMP;
@@ -15,15 +17,20 @@ public class MenuConsulterCommande {
 
 	public void afficherCommandes(Connexion conn) {
 		conn.connect();
-		
+		try {
+			conn.getConn().setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		afficherListeClients(conn);
 		int idClient = LectureClavier.lireEntier("Saisissez l'id du client");
 		
-		ArrayList<Reservation> reservations;
+		ArrayList<ReserverFret> reservations;
 		reservations = recupReservations(conn, idClient);
 		
 		int indexCommande = 0;
-		for(Reservation r: reservations)
+		for(ReserverFret r: reservations)
 		{
 			System.out.print(indexCommande+":  ");
 			System.out.println(r.toString());
@@ -64,17 +71,18 @@ public class MenuConsulterCommande {
 		}
 	}
 
-	private ArrayList<Reservation> recupReservations(Connexion conn, int idClient) {
+	private ArrayList<ReserverFret> recupReservations(Connexion conn, int idClient) {
 		Statement requete;
 		ResultSet resultat;
-		ArrayList<Reservation> result = new ArrayList<Reservation>();
+		ArrayList<ReserverFret> result = new ArrayList<ReserverFret>();
 		try {
 			requete = conn.getConn().createStatement();
-			resultat = requete.executeQuery("SELECT * FROM Reservation WHERE idPerso = "+idClient);
+			resultat = requete.executeQuery("SELECT * FROM ReserverFret  Join Reservation ON Reservation.noResa=ReserverFret.noResa"
+					+ " WHERE idPerso = "+idClient);
 			
 			while(resultat.next())
 			{
-				result.add(new Reservation(resultat.getInt("noResa"), new TIMESTAMP(resultat.getString("dateResa")), resultat.getInt("prixTotal"), resultat.getInt("idPerso")));
+				result.add(new ReserverFret(resultat.getInt("volumeResa"), resultat.getInt("poidsResa"), resultat.getInt("noResa"), resultat.getString("noVol"), new TIMESTAMP(resultat.getString("datedepart"))));
 			}	
 		} catch (SQLException e)
 		{
