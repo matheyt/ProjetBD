@@ -40,7 +40,7 @@ public class MenuAjouterVol {
 		
 		System.out.println("Veuillez saisir votre choix de type de VOl");
 		System.out.println("------------------------------------------------------------------------------");
-		System.out.println("| 1 . Vol Fret ## non terminé");
+		System.out.println("| 1 . Vol Fret ## Terminé");
 		System.out.println("------------------------------------------------------------------------------");
 		System.out.println("| 2 . Vol Passager ## non terminé");
 		System.out.println("------------------------------------------------------------------------------");
@@ -118,7 +118,7 @@ public class MenuAjouterVol {
 			System.out.println("---------------------------------------");
 			if (pl.size()<=m.getNbPilotes())
 			{
-				System.out.println("Pas ");
+				System.out.println("Pas assez de Pilote");
 			}
 			else {
 				AfficherPilotes(pl);
