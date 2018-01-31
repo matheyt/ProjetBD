@@ -19,8 +19,8 @@ public class MenuModifVolAeroDestination {
 		}
 		conn.connect();
 		
-		System.out.println("Saisissez le nouvel aeroport de destination");
 		// saisie aeroport
+		System.out.println("Saisissez le nouvel aeroport de destination");
 		String aeroportDestination = LectureClavier.lireChaine();
 		
 		modifierVol(conn, aeroportDestination, vol);
