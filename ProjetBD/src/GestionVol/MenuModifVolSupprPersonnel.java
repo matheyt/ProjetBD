@@ -1,5 +1,6 @@
 package GestionVol;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +17,12 @@ import PackageDAO.Connexion;
 public class MenuModifVolSupprPersonnel {
 	public void mainModifVolSupprPersonnel(Connexion conn, Vol vol) {
 		conn.connect();
-		
+		try {
+			conn.getConn().setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int choix = LectureClavier.lireEntier("Voulez-vous supprimer un pilote ou une hotesse ? (tapez 1 ou 2)");
 		switch(choix) {
 			case 1: supprimerPilote(conn, vol);break;
