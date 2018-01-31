@@ -17,7 +17,6 @@ public class MenuConsulterVol {
 		try {
 			conn.getConn().setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

@@ -94,14 +94,15 @@ public class MenuAjouterVol {
 		Av = recupAvionFretDispo(conn, dt, noVol, aeroOrigine, volume, Poids, distance);
 		System.out.println("liste des Avions Disponible");
 		System.out.println("---------------------------------------");
+		
 		if(Av.size()==0)
 		{
 			System.out.println("aucun avion dispo");
 		}
 		else {
+			//choix de l Avion
 			AfficherAvion(Av);
 			System.out.println("---------------------------------------");
-			//choisir AVION
 			int indAvion=  LectureClavier.lireEntier("veuiller choisir votre avion");
 			a = Av.get(indAvion);
 			Modele m;
@@ -110,6 +111,7 @@ public class MenuAjouterVol {
 			t[0]=a.getNoModele();
 			m = mD.find(t);
 			
+			//choix des pilotes
 			ArrayList<Personne> pl;
 			pl = recupPiloteDispo(conn, dt,a);
 			System.out.println("liste des Pilotes Disponible");
@@ -131,16 +133,18 @@ public class MenuAjouterVol {
 				}
 				
 				
-				//creation
+				//creation du Vol
 				
 				Vol v = new Vol(noVol,dt,aeroOrigine,aeroDestination,distance,0,a.getNoAvion());
 				VolDAO volD = new VolDAO(conn.getConn());
 				volD.create(v);
 				
+				//creation de Vol Fret
 				VolFret volF=new VolFret(volume, Poids, 15, noVol, dt);
 				VolFretDAO volFD = new VolFretDAO(conn.getConn());
 				volFD.create(volF);
 				
+				//ajoute des pilote dans la tabla assure
 				ajouterPilotes(ap,noVol,dt,conn);
 				
 				System.out.println("Le Vol a était creer");
@@ -179,6 +183,7 @@ public class MenuAjouterVol {
 		
 		Avion a;
 		
+		//choix de l'avion
 		ArrayList<Avion> Av;
 		Av = recupAvionPassagerDispo(conn, dt, noVol, aeroOrigine, nbPlace, distance);
 		System.out.println("liste des Avions Disponible");
@@ -190,8 +195,9 @@ public class MenuAjouterVol {
 		else {
 			AfficherAvion(Av);
 			System.out.println("---------------------------------------");
-			//choisir AVION
+			
 			int indAvion=  LectureClavier.lireEntier("veuiller choisir votre avion");
+			
 			a = Av.get(indAvion);
 			Modele m;
 			ModeleDAO mD = new ModeleDAO(conn.getConn());
@@ -199,10 +205,13 @@ public class MenuAjouterVol {
 			t[0]=a.getNoModele();
 			m = mD.find(t);
 			
+			//choix des pilotes
 			ArrayList<Personne> pl;
 			pl = recupPiloteDispo(conn, dt,a);
+			
 			System.out.println("liste des Pilotes Disponible");
 			System.out.println("---------------------------------------");
+			
 			if (pl.size()< m.getNbPilotes())
 			{
 				System.out.println("pas assez de pilote dispo");
@@ -210,16 +219,18 @@ public class MenuAjouterVol {
 			else
 			{
 				AfficherPilotes(pl);
+				
 				System.out.println("---------------------------------------");
 				System.out.println("veuiller choisir vos "+m.getNbPilotes()+" Pilotes");
 				System.out.println("---------------------------------------");
-				// choisir Pilote
+				
 				ArrayList<Personne> ap = new ArrayList<Personne>();
 				for(int i=0; i<m.getNbPilotes();i++)
 				{
 					ap.add(pl.get(LectureClavier.lireEntier("entrer le pilote num "+i)));
 				}
 				
+				//choix Hotess
 				ArrayList<Personne> ph;
 				ph = recupHotesseDispo(conn, dt);
 				System.out.println("liste des Hotesse Disponible");
@@ -236,24 +247,28 @@ public class MenuAjouterVol {
 					nbHot = LectureClavier.lireEntier("Conbien d'Hotesse voulait vous?");
 					System.out.println("veuiller choisir vos Hotesse");
 					System.out.println("---------------------------------------");
-					// choisir Hotesse
 					ArrayList<Personne> aHot = new ArrayList<Personne>();
 					for(int i=0; i<nbHot;i++)
 					{
 						aHot.add(pl.get(LectureClavier.lireEntier("entrer l hotesse num "+i)));
 					}
-					//creation
+					
+					//creation du nouveau Vol
 					
 					Vol v = new Vol(noVol,dt,aeroOrigine,aeroDestination,distance,0,a.getNoAvion());
 					VolDAO volD = new VolDAO(conn.getConn());
 					volD.create(v);
 					
+					//création du volPasssager
 					VolPassager volP=new VolPassager(nbPlEco, nbPlPr, nbPlAf, noVol, dt);
 					VolPassagerDAO volPD = new VolPassagerDAO(conn.getConn());
 					volPD.create(volP);
 					
+					//creation des places du Vol
 					creerPlaces(m,noVol,dt,conn);
+					//ajoute des pilote dans la table assure
 					ajouterPilotes(ap,noVol,dt,conn);
+					//ajoute des Hotesse dans la table assure
 					ajouterHotesse(aHot,noVol,dt,conn);
 					System.out.println("Le Vol a était creer");
 			

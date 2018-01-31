@@ -22,18 +22,17 @@ public class MenuVol {
 		{
 			System.out.println("Veuillez saisir votre choix");
 			System.out.println("------------------------------------------------------------------------------");
-			System.out.println("| 1 . Consulter les Vol en cour ## non terminé");
+			System.out.println("| 1 . Consulter les Vol en cour ## Terminé");
 			System.out.println("------------------------------------------------------------------------------");
-			System.out.println("| 2 . Ajouter un nouveau Vol ## non terminé");
+			System.out.println("| 2 . Ajouter un nouveau Vol ## En cours");
 			System.out.println("------------------------------------------------------------------------------");
-			System.out.println("| 3 . Modifier un Vol ## non terminé");
+			System.out.println("| 3 . Modifier un Vol ## En cours");
 			System.out.println("------------------------------------------------------------------------------");
-			System.out.println("| 4 . Supprimer un Vol ## non terminé");
+			System.out.println("| 4 . Supprimer un Vol ## En cours");
 			System.out.println("------------------------------------------------------------------------------");
 			System.out.println("| 5 . Quitter");
 			System.out.println("------------------------------------------------------------------------------");
 	
-			// Saisir choix | String choix = ....
 			
 			String choix;
 			choix = this.lecture.lireChaine();

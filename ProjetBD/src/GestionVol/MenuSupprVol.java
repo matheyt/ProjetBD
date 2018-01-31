@@ -52,15 +52,18 @@ public class MenuSupprVol {
 		t[1]=dateVol;
 		Vol v = VDao.find(t);
 		
-		
+		// cherche un VolFret
 		VolFret vf = vFDAO.find(t);
+		
 		if (vf!=null)
 		{
+			//recuperation des vol similaire a celui a supprimer
 			ArrayList<VolFret> volFSim;
 			volFSim = RecupVolFretSimilaire(v,conn,vf);
 			ArrayList<ReserverFret> resaF;
 			resaF = RecupResaFret(v,conn);
 			
+			//Transfere des reservations vers le prochain vol similaire
 			if(volFSim.size()!=0)
 			{
 				System.out.println("modification des reservation ...");
@@ -75,6 +78,7 @@ public class MenuSupprVol {
 			}
 			else
 			{
+				//suppession de toute les Reservation si pas de vol similaire trouver
 				Object[] tab =new Object[1];
 				for(int i=0;i<resaF.size();i++ )
 				{
@@ -86,11 +90,16 @@ public class MenuSupprVol {
 			
 		}
 		else{
+			// TODO Partie Vol Passager
 			RecupVolPassagerSim(v,conn);
 		}
+		
+		//suppresion du Vol
 		System.out.println("Suppresion du vol ...");
 		VDao.delete(v);
 		System.out.println("suppression terminé!!");
+		
+		
 		try {
 			conn.getConn().commit();
 			conn.disconnect();
@@ -121,8 +130,7 @@ public class MenuSupprVol {
 	}
 
 	private void RecupVolPassagerSim(Vol v, Connexion conn) {
-		// TODO Auto-generated method stub
-		
+		// TODO Finir la Partir du Vol PASSAGER
 	}
 
 	private ArrayList<VolFret> RecupVolFretSimilaire(Vol v, Connexion conn,VolFret vf) {
@@ -148,20 +156,4 @@ public class MenuSupprVol {
 	}
 	}
 	
-	//consultaion autre vol similaire
-	
-	/*si Vol Passager
-	 * 
-	 * si autre vol similaire transfere des reservation ddes place ver autre place
-	 * 
-	 * si vol fret
-	 * si autre vol similaire transfere resa fret vers nouveau vol*/
-	
-	//suppression des ancien resa
-	
-	//suppression des Voltype
-	
-	//suppression des vol
-	
-	//indiqué que le vol est supprimé
 
