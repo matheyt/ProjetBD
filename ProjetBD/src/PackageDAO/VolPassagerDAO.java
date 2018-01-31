@@ -21,7 +21,7 @@ public class VolPassagerDAO extends DAO<VolPassager> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO VolPassager (placesMinEco, placesMinPremiere, placesMinAffaire, noVol, datedepart) VALUES (" + obj.getPlacesMinEco()+", " + obj.getPlacesMinPremiere()+", "+obj.getPlacesMinAffaire()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO VolPassager (placesMinEco, placesMinPremiere, placesMinAffaire, noVol, datedepart) VALUES (" + obj.getPlacesMinEco()+", " + obj.getPlacesMinPremiere()+", "+obj.getPlacesMinAffaire()
 			        +", '"+obj.getNoVol()+"', TIMESTAMP '"+obj.getDateDepart()+"')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -35,7 +35,7 @@ public class VolPassagerDAO extends DAO<VolPassager> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM VolPassager WHERE noVol = '" + obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM VolPassager WHERE noVol = '" + obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class VolPassagerDAO extends DAO<VolPassager> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE VolPassager SET placesMinEco = " + obj.getPlacesMinEco()+", placesMinPremiere = "+obj.getPlacesMinPremiere()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE VolPassager SET placesMinEco = " + obj.getPlacesMinEco()+", placesMinPremiere = "+obj.getPlacesMinPremiere()
 			        +", placesMinAffaire = "+obj.getPlacesMinAffaire()
 			        +" WHERE noVol = '"+obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
 		} catch (SQLException e) {

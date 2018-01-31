@@ -19,7 +19,7 @@ public class ReservationDAO extends DAO<Reservation> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Reservation (noResa, dateResa, prixTotal, idPerso) VALUES (" + obj.getNoResa()+", TIMESTAMP '" + obj.getDateResa()+"', "+obj.getPrixTotal()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO Reservation (noResa, dateResa, prixTotal, idPerso) VALUES (" + obj.getNoResa()+", TIMESTAMP '" + obj.getDateResa()+"', "+obj.getPrixTotal()
 			        +", "+obj.getIdPerso()+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -33,7 +33,7 @@ public class ReservationDAO extends DAO<Reservation> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Reservation WHERE noResa = " + obj.getNoResa());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM Reservation WHERE noResa = " + obj.getNoResa());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class ReservationDAO extends DAO<Reservation> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Reservation SET dateResa = TIMESTAMP '" + obj.getDateResa()+"', prixTotal = "+obj.getPrixTotal()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Reservation SET dateResa = TIMESTAMP '" + obj.getDateResa()+"', prixTotal = "+obj.getPrixTotal()
 			        +", idPerso = "+obj.getIdPerso()
 			        +" WHERE noResa = "+obj.getNoResa());
 		} catch (SQLException e) {

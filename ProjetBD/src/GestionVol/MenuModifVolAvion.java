@@ -15,13 +15,14 @@ import PackageDAO.VolDAO;
 public class MenuModifVolAvion {
 
 	public void mainModifVolAvion(Connexion conn, Vol vol) {
+		conn.connect();
 		try {
 			conn.getConn().setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		conn.connect();
+		//conn.connect();
 		int noAvion = LectureClavier.lireEntier("Saisissez le numero du nouvel avion choisi");
 		
 		afficherAvionsDisponibles(conn, noAvion, vol);

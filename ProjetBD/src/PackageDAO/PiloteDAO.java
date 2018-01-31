@@ -18,7 +18,7 @@ public class PiloteDAO extends DAO<Pilote> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Pilote (idPerso) VALUES (" + obj.getIdPerso()+")");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO Pilote (idPerso) VALUES (" + obj.getIdPerso()+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class PiloteDAO extends DAO<Pilote> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Pilote WHERE idPerso = " + obj.getIdPerso());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM Pilote WHERE idPerso = " + obj.getIdPerso());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
