@@ -19,7 +19,7 @@ public class PlaceDAO extends DAO<Place> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Place (idPlace, noPlace, classe, position, prix, noVol, datedepart, noResa) VALUES (" + obj.getIdPlace()+", '" + obj.getNoPlace()+"', '"+obj.getClasse()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO Place (idPlace, noPlace, classe, position, prix, noVol, datedepart, noResa) VALUES (" + obj.getIdPlace()+", '" + obj.getNoPlace()+"', '"+obj.getClasse()
 			        +"', '"+obj.getPosition()+"', "+obj.getPrix()+", '"+obj.getNoVol()+"',TIMESTAMP '"+obj.getDateDepart()+"', NULL)");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -33,7 +33,7 @@ public class PlaceDAO extends DAO<Place> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Place WHERE idPlace = " + obj.getIdPlace());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM Place WHERE idPlace = " + obj.getIdPlace());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class PlaceDAO extends DAO<Place> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Place SET noPlace = '" + obj.getNoPlace()+"', classe = '"+obj.getClasse()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Place SET noPlace = '" + obj.getNoPlace()+"', classe = '"+obj.getClasse()
 			        +"', position = '"+obj.getPosition()+"', prix = "+obj.getPrix()+", noVol = '"+obj.getNoVol()
 			        +"', datedepart = TIMESTAMP '"+obj.getDateDepart()+"', noResa = "+obj.getNoResa()
 			        +" WHERE idPlace = "+obj.getIdPlace());

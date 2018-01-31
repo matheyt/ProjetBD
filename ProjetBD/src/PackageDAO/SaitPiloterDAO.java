@@ -18,7 +18,7 @@ public class SaitPiloterDAO extends DAO<SaitPiloter> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO saitPiloter (idPerso, noModele) VALUES (" + obj.getIdPerso()+", '" + obj.getNoModele()+"')");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO saitPiloter (idPerso, noModele) VALUES (" + obj.getIdPerso()+", '" + obj.getNoModele()+"')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class SaitPiloterDAO extends DAO<SaitPiloter> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM saitPiloter WHERE idPerso = " + obj.getIdPerso()+" AND noModele = '"+obj.getNoModele()+"'");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM saitPiloter WHERE idPerso = " + obj.getIdPerso()+" AND noModele = '"+obj.getNoModele()+"'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

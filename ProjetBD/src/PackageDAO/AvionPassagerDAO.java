@@ -18,7 +18,7 @@ public class AvionPassagerDAO extends DAO<AvionPassager> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO AvionPassager (nbPlaces, nbPlacesEco, nbPlacesPremiere, nbPlacesAffaire, noAvion) VALUES (" + obj.getNbPlaces()+", " + obj.getNbPlacesEco()+", "+obj.getNbPlacesPremiere()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO AvionPassager (nbPlaces, nbPlacesEco, nbPlacesPremiere, nbPlacesAffaire, noAvion) VALUES (" + obj.getNbPlaces()+", " + obj.getNbPlacesEco()+", "+obj.getNbPlacesPremiere()
 			        +", "+obj.getNbPlacesAffaire()+", "+obj.getNoAvion()+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -32,7 +32,7 @@ public class AvionPassagerDAO extends DAO<AvionPassager> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM AvionPassager WHERE noAvion = " + obj.getNoAvion());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM AvionPassager WHERE noAvion = " + obj.getNoAvion());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class AvionPassagerDAO extends DAO<AvionPassager> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE AvionPassager SET nbPlaces = " + obj.getNbPlaces()+", nbPlacesEco = "+obj.getNbPlacesEco()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE AvionPassager SET nbPlaces = " + obj.getNbPlaces()+", nbPlacesEco = "+obj.getNbPlacesEco()
 			        +", nbPlacesPremiere = "+obj.getNbPlacesPremiere()+", nbPlacesAffaire = "+obj.getNbPlacesAffaire()
 			        +" WHERE noAvion = "+obj.getNoAvion());
 		} catch (SQLException e) {

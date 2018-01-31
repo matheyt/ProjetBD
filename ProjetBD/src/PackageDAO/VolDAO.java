@@ -20,7 +20,7 @@ public class VolDAO extends DAO<Vol> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Vol (noVol, datedepart, aeroOrigine, aeroDestination, duree, distance, arrive, noAvion) VALUES ('" + obj.getNoVol()+"', TIMESTAMP '" + obj.getDateDepart()+"', '"+obj.getAeroOrigine()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO Vol (noVol, datedepart, aeroOrigine, aeroDestination, duree, distance, arrive, noAvion) VALUES ('" + obj.getNoVol()+"', TIMESTAMP '" + obj.getDateDepart()+"', '"+obj.getAeroOrigine()
 			        +"', '"+obj.getAeroDestination()+"', "+obj.getDuree()+", "+obj.getDistance()+", "+obj.isArrive()+", "+obj.getNoAvion()+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -35,7 +35,7 @@ public class VolDAO extends DAO<Vol> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Vol WHERE noVol = '" + obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM Vol WHERE noVol = '" + obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class VolDAO extends DAO<Vol> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Vol SET aeroOrigine = '" + obj.getAeroOrigine()+"', aeroDestination = '"+obj.getAeroDestination()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Vol SET aeroOrigine = '" + obj.getAeroOrigine()+"', aeroDestination = '"+obj.getAeroDestination()
 			        +"', duree = "+obj.getDuree()+", distance = "+obj.getDistance()+", arrive = "+obj.isArrive()+", noAvion = "+obj.getNoAvion()
 			        +" WHERE noVol = '"+obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
 		} catch (SQLException e) {

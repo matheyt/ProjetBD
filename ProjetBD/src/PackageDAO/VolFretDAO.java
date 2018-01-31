@@ -1,7 +1,6 @@
 package PackageDAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,7 +19,7 @@ public class VolFretDAO extends DAO<VolFret> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO VolFret (volumeMin, poidsMin, prixMetreCube, noVol, datedepart) VALUES (" + obj.getVolumeMin()+", " + obj.getPoidsMin()+", "+obj.getPrixMetreCube()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO VolFret (volumeMin, poidsMin, prixMetreCube, noVol, datedepart) VALUES (" + obj.getVolumeMin()+", " + obj.getPoidsMin()+", "+obj.getPrixMetreCube()
 			        +", '"+obj.getNoVol()+"', TIMESTAMP '"+obj.getDateDepart()+"')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -34,7 +33,7 @@ public class VolFretDAO extends DAO<VolFret> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM VolFret WHERE noVol = '" + obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM VolFret WHERE noVol = '" + obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +46,7 @@ public class VolFretDAO extends DAO<VolFret> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE VolFret SET volumeMin = " + obj.getVolumeMin()+", poidsMin = "+obj.getPoidsMin()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE VolFret SET volumeMin = " + obj.getVolumeMin()+", poidsMin = "+obj.getPoidsMin()
 			        +", prixMetreCube = "+obj.getPrixMetreCube()
 			        +" WHERE noVol = '"+obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
 		} catch (SQLException e) {
@@ -60,7 +59,7 @@ public class VolFretDAO extends DAO<VolFret> {
 	@Override
 	public VolFret find(Object[] tab) {
 		String novol = (String) tab[0];
-		Date dt = (Date) tab[1];
+		TIMESTAMP dt = (TIMESTAMP) tab[1];
 		VolFret vol = null;
 		try {
 		      ResultSet result = this.connect.createStatement(

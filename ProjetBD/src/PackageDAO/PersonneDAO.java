@@ -18,7 +18,7 @@ public class PersonneDAO extends DAO<Personne> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Personne (idPerso, nom, prenom, nbHeuresVol) VALUES (" + obj.getIdPerso()+", '" + obj.getNom()+"', '"+obj.getPrenom()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO Personne (idPerso, nom, prenom, nbHeuresVol) VALUES (" + obj.getIdPerso()+", '" + obj.getNom()+"', '"+obj.getPrenom()
 			        +"', "+obj.getNbHeuresVol()+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -32,7 +32,7 @@ public class PersonneDAO extends DAO<Personne> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Personne WHERE idPerso = " + obj.getIdPerso());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM Personne WHERE idPerso = " + obj.getIdPerso());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class PersonneDAO extends DAO<Personne> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Personne SET nom = '" + obj.getNom()+"', prenom = '"+obj.getPrenom()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Personne SET nom = '" + obj.getNom()+"', prenom = '"+obj.getPrenom()
 			        +"', nbHeuresVol = "+obj.getNbHeuresVol()
 			        +" WHERE idPerso = "+obj.getIdPerso());
 		} catch (SQLException e) {

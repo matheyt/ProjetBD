@@ -56,7 +56,8 @@ public class MenuVol {
 			MenuModifierVol mM = new MenuModifierVol();
 			mM.afficherMenuModifier(conn);break;
 		case "4" :
-			MenuSupprVol mS = new MenuSupprVol();break;
+			MenuSupprVol mS = new MenuSupprVol();
+			mS.SupressionVol(conn);break;
 		case "5" :
 			this.quit=true; break;
 		}
