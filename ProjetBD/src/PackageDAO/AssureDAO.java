@@ -19,7 +19,7 @@ public class AssureDAO extends DAO<Assure> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO assure (idPerso, noVol, datedepart) VALUES (" + obj.getIdPerso()+", '" + obj.getNoVol()+"', TIMESTAMP '"+obj.getDateDepart()+"')");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO assure (idPerso, noVol, datedepart) VALUES (" + obj.getIdPerso()+", '" + obj.getNoVol()+"', TIMESTAMP '"+obj.getDateDepart()+"')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,7 +32,7 @@ public class AssureDAO extends DAO<Assure> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM assure WHERE idPerso = " + obj.getIdPerso()+" AND noVol = '"+obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM assure WHERE idPerso = " + obj.getIdPerso()+" AND noVol = '"+obj.getNoVol()+"' AND datedepart = TIMESTAMP '"+obj.getDateDepart()+"'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,7 +54,7 @@ public class AssureDAO extends DAO<Assure> {
 		try {
 		      ResultSet result = this.connect.createStatement(
 		        ResultSet.TYPE_SCROLL_INSENSITIVE,
-		        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Assure WHERE noVol = '" + noVol+"' AND dateDepart = TIMESTAMP '" + dt + "' AND idPerso ="+ idPers);
+		        ResultSet.CONCUR_UPDATABLE).executeQuery("SELECT * FROM Assure WHERE noVol = '" + noVol+"' AND dateDepart = TIMESTAMP '" + dt + "' AND idPerso ="+ idPers);
 		      if(result.first())
 		      {
 		    	  A = new Assure(result.getInt("idPerso"),result.getString("noVol"), new TIMESTAMP(result.getString("dateDepart")));

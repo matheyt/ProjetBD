@@ -18,7 +18,7 @@ public class AvionDAO extends DAO<Avion> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Avion (noAvion, rayon, noModele) VALUES (" + obj.getNoAvion()+", " + obj.getRayon()+", '"+obj.getNoModele()+"')");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO Avion (noAvion, rayon, noModele) VALUES (" + obj.getNoAvion()+", " + obj.getRayon()+", '"+obj.getNoModele()+"')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class AvionDAO extends DAO<Avion> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Avion WHERE noAvion = " + obj.getNoAvion());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM Avion WHERE noAvion = " + obj.getNoAvion());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class AvionDAO extends DAO<Avion> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Avion SET rayon = " + obj.getRayon()+", noModele = '"+obj.getNoModele()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Avion SET rayon = " + obj.getRayon()+", noModele = '"+obj.getNoModele()
 			        +"' WHERE noAvion = "+obj.getNoAvion());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

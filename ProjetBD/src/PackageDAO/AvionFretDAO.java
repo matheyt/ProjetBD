@@ -18,7 +18,7 @@ public class AvionFretDAO extends DAO<AvionFret> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO AvionFret (volumeMax, poidsMax, noAvion) VALUES (" + obj.getVolumeMax()+", " + obj.getPoidsMax()+", "+obj.getNoAvion()+")");
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO AvionFret (volumeMax, poidsMax, noAvion) VALUES (" + obj.getVolumeMax()+", " + obj.getPoidsMax()+", "+obj.getNoAvion()+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class AvionFretDAO extends DAO<AvionFret> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM AvionFret WHERE noAvion = " + obj.getNoAvion());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM AvionFret WHERE noAvion = " + obj.getNoAvion());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class AvionFretDAO extends DAO<AvionFret> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE AvionFret SET volumeMax = " + obj.getVolumeMax()+", poidsMax = "+obj.getPoidsMax()	
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE AvionFret SET volumeMax = " + obj.getVolumeMax()+", poidsMax = "+obj.getPoidsMax()	
 			        +" WHERE noAvion = "+obj.getNoAvion());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

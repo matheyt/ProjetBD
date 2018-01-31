@@ -18,7 +18,7 @@ public class AdresseDAO extends DAO<Adresse> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("INSERT INTO Adresse (idAdresse, noAdresse, rue, cpp, ville, pays, idPerso) VALUES (" + obj.getIdAdresse()+", " + obj.getNoAdresse()+", '"+obj.getRue()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("INSERT INTO Adresse (idAdresse, noAdresse, rue, cpp, ville, pays, idPerso) VALUES (" + obj.getIdAdresse()+", " + obj.getNoAdresse()+", '"+obj.getRue()
 			        +"', "+obj.getCpp()+", '"+obj.getVille()+"', '"+obj.getPays()+"', "+obj.getIdPerso()+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -32,7 +32,7 @@ public class AdresseDAO extends DAO<Adresse> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("DELETE FROM Adresse WHERE idAdresse = " + obj.getIdAdresse());
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("DELETE FROM Adresse WHERE idAdresse = " + obj.getIdAdresse());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class AdresseDAO extends DAO<Adresse> {
 		try {
 			ResultSet result = this.connect.createStatement(
 			        ResultSet.TYPE_SCROLL_INSENSITIVE,
-			        ResultSet.CONCUR_READ_ONLY).executeQuery("UPDATE Adresse SET noAdresse = " + obj.getNoAdresse()+", rue = '"+obj.getRue()
+			        ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Adresse SET noAdresse = " + obj.getNoAdresse()+", rue = '"+obj.getRue()
 			        +"', cpp = "+obj.getCpp()+", ville = '"+obj.getVille()+"', pays = '"+obj.getVille()+"', idPerso = "+obj.getIdPerso()
 			        +" WHERE idAdresse = "+obj.getIdAdresse());
 		} catch (SQLException e) {
