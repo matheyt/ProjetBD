@@ -1,5 +1,6 @@
 package GestionVol;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,12 @@ public class MenuConsulterVol {
 
 	public void afficherVols(Connexion conn) {
 		conn.connect();
+		try {
+			conn.getConn().setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		ArrayList<Vol> vols;
 		vols = recupVols(conn);
